@@ -1,9 +1,9 @@
 Simple java 2D painting for custom components.
 
 To build this code, get and install SBT from 
-	https://github.com/sbt/sbt
+    https://github.com/sbt/sbt
 
 Use these commands to build:
-	git clone git@github.com:ritschwumm/sc2d.git
-	cd sc2d
-	sbt publish-local
+    git clone git@github.com:ritschwumm/sc2d.git
+    cd sc2d
+    sbt publish-local

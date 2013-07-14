@@ -10,15 +10,16 @@ import java.awt.font.FontRenderContext
 
 object DrawText {
 	private val identityTransform	= new AffineTransform
+	// TODO fake FontRenderContext returns sizes different from what's used in paint 
+	private val fontRenderContext	= new FontRenderContext(null, false, false)
 }
 
 // NOTE "" has no size at all, whereas " " has
 case class DrawText(text:String, font:Font, x:Float, y:Float, leftAlign:Boolean) extends Figure {
-	// TODO fake FontRenderContext returns sizes different from what's used in paint 
 	private val textLayout	= new TextLayout(
 			text,
 			font, 
-			new FontRenderContext(null, false, false))
+			DrawText.fontRenderContext)
 			
 	private val offsetX		=
 			if (leftAlign)	x
