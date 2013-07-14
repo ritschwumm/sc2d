@@ -6,7 +6,6 @@ import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
 
 case class WithClip(clip:Shape, sub:Figure) extends Figure {
-	// TODO check
 	def pick(at:Point2D):Boolean	=
 			(clip	contains	at) && 
 			(sub	pick		at)

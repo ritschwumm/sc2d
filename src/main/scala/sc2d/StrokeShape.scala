@@ -8,7 +8,7 @@ import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
 
 case class StrokeShape(stroke:Stroke, shape:Shape) extends Figure {
-	// TODO slow
+	// NOTE slow
 	def pick(at:Point2D):Boolean	=
 			stroke createStrokedShape shape contains at
 		

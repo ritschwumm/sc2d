@@ -6,7 +6,7 @@ import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
 import java.awt.image.BufferedImage
 
-case class StampImage(image:BufferedImage, x:Int, y:Int) extends Figure {
+case class DrawImage(image:BufferedImage, x:Int, y:Int) extends Figure {
 	def pick(at:Point2D):Boolean	= {
 		val atX	= at.getX.toInt - x
 		val atY	= at.getY.toInt - y
