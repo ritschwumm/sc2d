@@ -2,9 +2,9 @@ name			:= "sc2d"
 
 organization	:= "de.djini"
 
-version			:= "0.5.0"
+version			:= "0.6.0"
 
-scalaVersion	:= "2.10.0"
+scalaVersion	:= "2.10.1"
 
 scalacOptions	++= Seq(
 	"-deprecation",

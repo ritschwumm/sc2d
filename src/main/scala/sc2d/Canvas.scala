@@ -5,7 +5,9 @@ import java.awt.event._
 import java.awt.geom._
 import javax.swing._
 
-class Canvas(background:Option[Paint], qualityOverSpeed:Boolean) extends JComponent {
+import scala.collection.JavaConverters._
+
+class Canvas(background:Option[Paint], hints:Hints=Hints.empty) extends JComponent {
 	setOpaque(background.isDefined)
 	
 	private var figures:Seq[Figure]		= Seq.empty
@@ -30,23 +32,7 @@ class Canvas(background:Option[Paint], qualityOverSpeed:Boolean) extends JCompon
 		try {
 			val	g	= g1.asInstanceOf[Graphics2D]
 		
-			// g setRenderingHint (RenderingHints.KEY_STROKE_CONTROL,	RenderingHints.VALUE_STROKE_DEFAULT)
-			// g setRenderingHint (RenderingHints.KEY_STROKE_CONTROL,	RenderingHints.VALUE_STROKE_NORMALIZE)
-			// g setRenderingHint (RenderingHints.KEY_STROKE_CONTROL,	RenderingHints.VALUE_STROKE_PURE)
-			if (qualityOverSpeed) {
-				g setRenderingHint (RenderingHints.KEY_ANTIALIASING, 			RenderingHints.VALUE_ANTIALIAS_ON)
-				g setRenderingHint (RenderingHints.KEY_TEXT_ANTIALIASING,		RenderingHints.VALUE_TEXT_ANTIALIAS_ON)	// VALUE_TEXT_ANTIALIAS_GASP
-				g setRenderingHint (RenderingHints.KEY_INTERPOLATION,			RenderingHints.VALUE_INTERPOLATION_BICUBIC)
-				g setRenderingHint (RenderingHints.KEY_COLOR_RENDERING,		RenderingHints.VALUE_COLOR_RENDER_QUALITY)
-				g setRenderingHint (RenderingHints.KEY_ALPHA_INTERPOLATION,	RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY)
-			}
-			else {
-				g setRenderingHint (RenderingHints.KEY_ANTIALIASING, 			RenderingHints.VALUE_ANTIALIAS_OFF)
-				g setRenderingHint (RenderingHints.KEY_TEXT_ANTIALIASING,		RenderingHints.VALUE_TEXT_ANTIALIAS_OFF)
-				g setRenderingHint (RenderingHints.KEY_INTERPOLATION,			RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR)
-				g setRenderingHint (RenderingHints.KEY_COLOR_RENDERING,		RenderingHints.VALUE_COLOR_RENDER_SPEED)
-				g setRenderingHint (RenderingHints.KEY_ALPHA_INTERPOLATION,	RenderingHints.VALUE_ALPHA_INTERPOLATION_SPEED)
-			}
+			g addRenderingHints hints.map
 
 			if (background.isDefined) {
 				g setPaint	background.get
@@ -63,7 +49,7 @@ class Canvas(background:Option[Paint], qualityOverSpeed:Boolean) extends JCompon
 			g1.dispose()
 		}
 	}
-
+	
 	// repaint on bounds changes
 	this addComponentListener new ComponentListener {
 		def componentHidden(ev:ComponentEvent)	{}
