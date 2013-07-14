@@ -7,12 +7,12 @@ import java.awt.Graphics2D
 import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
 
-case class StrokeShape(stroke:Stroke, shape:Shape) extends Pickable {
+case class StrokeShape(stroke:Stroke, shape:Shape) extends Figure {
 	// TODO slow
 	def pick(at:Point2D):Boolean	=
 			stroke createStrokedShape shape contains at
 		
-	val repaint:Rectangle2D	= 
+	val bounds:Rectangle2D	= 
 			stroke match {
 				case bs:BasicStroke	=>
 						val shapeBounds	= shape.getBounds2D

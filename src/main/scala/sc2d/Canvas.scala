@@ -15,7 +15,7 @@ final class Canvas(background:Option[Paint], qualityOverSpeed:Boolean) extends J
 		this.figures	= figures
 		// TODO slow. check swing coalescing, too.
 		repaints foreach repaint
-		repaints		= figures map { _.repaint.getBounds }
+		repaints		= figures map { _.bounds.getBounds }
 		repaints foreach repaint
 	}
 	

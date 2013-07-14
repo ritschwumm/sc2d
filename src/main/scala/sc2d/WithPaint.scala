@@ -5,12 +5,12 @@ import java.awt.Graphics2D
 import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
 
-case class WithPaint(paint:Paint, sub:Figure) extends Modifier {
+case class WithPaint(paint:Paint, sub:Figure) extends Figure {
 	def pick(at:Point2D):Boolean	=
 			sub	pick at
 		
-	val repaint:Rectangle2D	= 
-			sub.repaint
+	val bounds:Rectangle2D	= 
+			sub.bounds
 	
 	def paint(g:Graphics2D) {
 		val old	= g.getPaint

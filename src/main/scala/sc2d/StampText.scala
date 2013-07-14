@@ -13,7 +13,7 @@ object StampText {
 }
 
 // NOTE "" has no size at all, whereas " " has
-case class StampText(text:String, font:Font, x:Float, y:Float, left:Boolean) extends Pickable {
+case class StampText(text:String, font:Font, x:Float, y:Float, left:Boolean) extends Figure {
 	private val textLayout	= new TextLayout(
 			text,
 			font, 
@@ -36,7 +36,7 @@ case class StampText(text:String, font:Font, x:Float, y:Float, left:Boolean) ext
 	}
 	
 	// TODO seems to be too small on the right, probably because textLayout uses a fake FontRenderContext
-	val repaint:Rectangle2D	= {
+	val bounds:Rectangle2D	= {
 		val textBounds	= textLayout.getBounds
 		new Rectangle2D.Double(
 				textBounds.getX			+ offsetX,

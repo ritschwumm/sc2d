@@ -6,12 +6,16 @@ import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
 import java.awt.image.BufferedImage
 
-case class StampImage(image:BufferedImage, x:Int, y:Int) extends Pickable {
-	// TODO check
-	def pick(at:Point2D):Boolean	=
-			((image getRGB (at.getX.toInt, at.getY.toInt)) & 0xff000000L) != 0
+case class StampImage(image:BufferedImage, x:Int, y:Int) extends Figure {
+	def pick(at:Point2D):Boolean	= {
+		val atX	= at.getX.toInt - x
+		val atY	= at.getY.toInt - y
+		atX >= 0 && atX < image.getWidth	&&
+		atY >= 0 && atY < image.getHeight	&&
+		((image getRGB (atX, atY)) & 0xff000000L) != 0
+	}
 		
-	val repaint:Rectangle2D	= 
+	val bounds:Rectangle2D	= 
 			new Rectangle(
 					x,
 					y,

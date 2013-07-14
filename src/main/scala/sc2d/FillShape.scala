@@ -5,11 +5,11 @@ import java.awt.Graphics2D
 import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
 
-case class FillShape(shape:Shape) extends Pickable {
+case class FillShape(shape:Shape) extends Figure {
 	def pick(at:Point2D):Boolean	=
 			shape contains at
 		
-	val repaint:Rectangle2D	= {
+	val bounds:Rectangle2D	= {
 		val shapeBounds	= shape.getBounds2D
 		new Rectangle2D.Double(
 				shapeBounds.getX,
