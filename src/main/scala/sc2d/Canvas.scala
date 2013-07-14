@@ -5,7 +5,7 @@ import java.awt.event._
 import java.awt.geom._
 import javax.swing._
 
-final class Canvas(background:Option[Paint], qualityOverSpeed:Boolean) extends JComponent {
+class Canvas(background:Option[Paint], qualityOverSpeed:Boolean) extends JComponent {
 	setOpaque(background.isDefined)
 	
 	private var figures:Seq[Figure]		= Seq.empty
