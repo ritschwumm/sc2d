@@ -1,4 +1,4 @@
-Simple java 2D painting for custom components.
+Simple java 2D painting for custom components
 
 To build this code, get and install SBT from 
     https://github.com/sbt/sbt

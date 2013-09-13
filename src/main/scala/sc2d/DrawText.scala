@@ -15,17 +15,17 @@ object DrawText {
 }
 
 // NOTE "" has no size at all, whereas " " has
-case class DrawText(text:String, font:Font, x:Float, y:Float, leftAlign:Boolean) extends Figure {
+/** xAlign 0 is left, 0.5 is center, 1 is right */
+case class DrawText(text:String, font:Font, x:Float, y:Float, xAlign:Float) extends Figure {
 	private val textLayout	= new TextLayout(
 			text,
 			font, 
 			DrawText.fontRenderContext)
 			
 	private val offsetX		=
-			if (leftAlign)	x
-			else			x - textLayout.getAdvance
+			x - textLayout.getAdvance * xAlign
 			
-	private val offsetY	= 
+	private val offsetY	=
 			y - textLayout.getBaseline
 	
 	// NOTE slow
