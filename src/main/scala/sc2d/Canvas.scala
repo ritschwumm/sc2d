@@ -7,42 +7,45 @@ import javax.swing._
 
 import scala.collection.JavaConverters._
 
-class Canvas(background:Option[Paint], hints:Hints=Hints.empty) extends JComponent {
+// NOTE if background is None the component is considered non-opaque
+class Canvas(background:Option[Paint], hints:Hints=Hints.empty, immediate:Boolean=false) extends JComponent {
 	setOpaque(background.isDefined)
 	
 	private var figures:Seq[Figure]		= Seq.empty
-	private var repaints:Seq[Rectangle]	= Seq.empty
+	// private var repaints:Seq[Rectangle]	= Seq.empty
 		
 	def setFigures(figures:Seq[Figure]) {
 		this.figures	= figures
-		// TODO slow. check swing coalescing, too.
+		/*
 		repaints foreach repaint
 		repaints		= figures map { _.bounds.getBounds }
 		repaints foreach repaint
+		*/
+		// TODO better repainting mechanism
+		if (immediate)	paintImmediately(0, 0, getWidth, getHeight)
+		else			repaint()
 	}
 	
 	/** paint this component */
 	override def paintComponent(graphics:Graphics) {
-		// TODO handle opaque
-		// Further, if you do not invoker super's implementation you must honor the opaque property,
-		// that is if this component is opaque, you must completely fill in the background in a non-opaque color. 
-		// super.paintComponent(graphics);
-		
 		val	g1	= graphics.create()
 		try {
 			val	g	= g1.asInstanceOf[Graphics2D]
-		
 			g addRenderingHints hints.map
+			
+			val cb	= g.getClipBounds
 
 			if (background.isDefined) {
 				g setPaint	background.get
-				g fill		g.getClipBounds
+				g fill		cb
 			}
 			
-			// TODO only paint if figures repaint intersects clip bounds?
 			val iter	= figures.iterator
 			while (iter.hasNext) {
-				iter.next paint g
+				val figure	= iter.next
+				if (figure.bounds intersects cb) {
+					figure paint g
+				}
 			}
 		}
 		finally {
