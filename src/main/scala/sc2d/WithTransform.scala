@@ -5,7 +5,7 @@ import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
 import java.awt.geom.AffineTransform
 
-case class WithTransform(transform:AffineTransform, sub:Figure) extends Figure {
+final case class WithTransform(transform:AffineTransform, sub:Figure) extends Figure {
 	def pick(at:Point2D):Boolean	= {
 		val	tmp	= new Point2D.Double
 		transform inverseTransform (at, tmp)
@@ -16,9 +16,9 @@ case class WithTransform(transform:AffineTransform, sub:Figure) extends Figure {
 			(transform createTransformedShape sub.bounds).getBounds2D
 		
 	def paint(g:Graphics2D) {
-		val old	= g.getTransform
+		val oldTransform	= g.getTransform
 		g	transform		transform
 		sub	paint			g
-		g	setTransform	old
+		g	setTransform	oldTransform
 	}
 }

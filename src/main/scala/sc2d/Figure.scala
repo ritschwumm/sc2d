@@ -15,6 +15,8 @@ trait Figure {
 	def bounds:Rectangle2D
 	def paint(g:Graphics2D):Unit
 	
+	final def pickOnly:Figure	= PickOnly(this)
+	
 	final def withClip(clip:Shape):Figure						= WithClip		(clip,		this)
 	final def withComposite(composite:Composite):Figure			= WithComposite	(composite,	this)
 	final def withPaint(paint:Paint):Figure						= WithPaint		(paint,		this)

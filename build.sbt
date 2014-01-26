@@ -2,7 +2,7 @@ name			:= "sc2d"
 
 organization	:= "de.djini"
 
-version			:= "0.9.0"
+version			:= "0.10.0"
 
 scalaVersion	:= "2.10.3"
 

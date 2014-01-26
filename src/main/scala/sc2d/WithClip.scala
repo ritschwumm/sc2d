@@ -5,7 +5,7 @@ import java.awt.Graphics2D
 import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
 
-case class WithClip(clip:Shape, sub:Figure) extends Figure {
+final case class WithClip(clip:Shape, sub:Figure) extends Figure {
 	def pick(at:Point2D):Boolean	=
 			(clip	contains	at) && 
 			(sub	pick		at)
@@ -14,9 +14,9 @@ case class WithClip(clip:Shape, sub:Figure) extends Figure {
 			sub.bounds createIntersection clip.getBounds2D
 	
 	def paint(g:Graphics2D) {
-		val old	= g.getClip
+		val oldClip	= g.getClip
 		g	clip	clip
 		sub	paint	g
-		g	setClip	old
+		g	setClip	oldClip
 	}
 }

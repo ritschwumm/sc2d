@@ -16,11 +16,13 @@ object DrawText {
 
 // NOTE "" has no size at all, whereas " " has
 /** xAlign 0 is left, 0.5 is center, 1 is right */
-case class DrawText(text:String, font:Font, x:Float, y:Float, xAlign:Float) extends Figure {
-	private val textLayout	= new TextLayout(
-			text,
-			font, 
-			DrawText.fontRenderContext)
+final case class DrawText(text:String, font:Font, x:Float, y:Float, xAlign:Float) extends Figure {
+	private val textLayout	=
+			new TextLayout(
+				text,
+				font, 
+				DrawText.fontRenderContext
+			)
 			
 	private val offsetX		=
 			x - textLayout.getAdvance * xAlign
@@ -31,24 +33,29 @@ case class DrawText(text:String, font:Font, x:Float, y:Float, xAlign:Float) exte
 	// NOTE slow
 	def pick(at:Point2D):Boolean	= {
 		val shape	= textLayout getOutline DrawText.identityTransform
-		val	tmp		= new Point2D.Double(
-				at.getX - offsetX,
-				at.getY - offsetY)
+		val	tmp		=
+				new Point2D.Double(
+					at.getX - offsetX,
+					at.getY - offsetY
+				)
 		shape contains tmp
 	}
 	
 	val bounds:Rectangle2D	= {
-		// BETTER use getPixelBounds?
+		// BETTER use getPixelBounds => that would need a FontRenderContext
 		val textBounds	= textLayout.getBounds
 		new Rectangle2D.Double(
-				textBounds.getX	+ offsetX,
-				textBounds.getY	+ offsetY,
-				textBounds.getWidth,
-				textBounds.getHeight)
+			textBounds.getX	+ offsetX,
+			textBounds.getY	+ offsetY,
+			textBounds.getWidth,
+			textBounds.getHeight
+		)
 	}
 	
 	def paint(g:Graphics2D) {
+		val oldFont	= g.getFont
 		g	setFont		font
 		g	drawString	(text, offsetX, offsetY)
+		g	setFont		oldFont
 	}
 }

@@ -5,7 +5,7 @@ import java.awt.Graphics2D
 import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
 
-case class WithComposite(composite:Composite, sub:Figure) extends Figure {
+final case class WithComposite(composite:Composite, sub:Figure) extends Figure {
 	def pick(at:Point2D):Boolean	=
 			sub	pick at
 		
@@ -13,9 +13,9 @@ case class WithComposite(composite:Composite, sub:Figure) extends Figure {
 			sub.bounds
 	
 	def paint(g:Graphics2D) {
-		val old	= g.getComposite
+		val oldComposite	= g.getComposite
 		g	setComposite	composite
 		sub	paint			g
-		g	setComposite	old
+		g	setComposite	oldComposite
 	}
 }

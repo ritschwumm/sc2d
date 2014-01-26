@@ -12,8 +12,9 @@ object Hints {
 	val empty:Hints	= Hints(Map.empty)
 	
 	def desktop:Option[Hints]	=
-			Option(Toolkit.getDefaultToolkit getDesktopProperty "awt.font.desktophints")
-			.map { it => Hints(it.asInstanceOf[JMap[RenderingHints.Key, AnyRef]].asScala.toMap) }
+			Option(Toolkit.getDefaultToolkit getDesktopProperty "awt.font.desktophints") map { it =>
+				Hints(it.asInstanceOf[JMap[RenderingHints.Key, AnyRef]].asScala.toMap) 
+			}
 	
 	// KEY_STROKE_CONTROL	-> VALUE_STROKE_DEFAULT, VALUE_STROKE_NORMALIZE, VALUE_STROKE_PURE
 	
