@@ -1,5 +1,6 @@
 package sc2d
 
+import java.awt.Paint
 import java.awt.Shape
 import java.awt.Stroke
 import java.awt.BasicStroke
@@ -7,7 +8,7 @@ import java.awt.Graphics2D
 import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
 
-final case class StrokeShape(stroke:Stroke, shape:Shape) extends Figure {
+final case class StrokeShape(shape:Shape, paint:Paint, stroke:Stroke) extends Figure {
 	private lazy val strokedShape	=
 			stroke createStrokedShape shape
 	
@@ -36,9 +37,12 @@ final case class StrokeShape(stroke:Stroke, shape:Shape) extends Figure {
 			}
 	
 	def paint(g:Graphics2D) {
+		val oldPaint	= g.getPaint
 		val oldStroke	= g.getStroke
+		g	setPaint	paint
 		g	setStroke	stroke
 		g	draw		shape
 		g	setStroke	oldStroke
+		g	setPaint	oldPaint
 	}
 }

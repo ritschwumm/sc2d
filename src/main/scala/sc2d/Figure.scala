@@ -19,7 +19,6 @@ trait Figure {
 	
 	final def withClip(clip:Shape):Figure						= WithClip		(clip,		this)
 	final def withComposite(composite:Composite):Figure			= WithComposite	(composite,	this)
-	final def withPaint(paint:Paint):Figure						= WithPaint		(paint,		this)
 	final def withTransform(transform:AffineTransform):Figure	= WithTransform	(transform,	this)
 	final def withHints(hints:Hints):Figure						= WithHints		(hints,		this)
 }

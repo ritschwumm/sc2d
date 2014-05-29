@@ -1,6 +1,7 @@
 package sc2d
 
 import java.awt.Font
+import java.awt.Paint
 import java.awt.Graphics2D
 import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
@@ -16,7 +17,7 @@ object DrawText {
 
 // NOTE "" has no size at all, whereas " " has
 /** xAlign 0 is left, 0.5 is center, 1 is right */
-final case class DrawText(text:String, font:Font, x:Float, y:Float, xAlign:Float) extends Figure {
+final case class DrawText(text:String, paint:Paint, font:Font, x:Float, y:Float, xAlign:Float) extends Figure {
 	private val textLayout	=
 			new TextLayout(
 				text,
@@ -53,9 +54,12 @@ final case class DrawText(text:String, font:Font, x:Float, y:Float, xAlign:Float
 	}
 	
 	def paint(g:Graphics2D) {
-		val oldFont	= g.getFont
+		val oldPaint	= g.getPaint
+		val oldFont		= g.getFont
+		g	setPaint	paint
 		g	setFont		font
 		g	drawString	(text, offsetX, offsetY)
+		g	setPaint	oldPaint
 		g	setFont		oldFont
 	}
 }

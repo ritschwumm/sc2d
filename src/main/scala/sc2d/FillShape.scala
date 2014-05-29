@@ -1,11 +1,12 @@
 package sc2d
 
+import java.awt.Paint
 import java.awt.Shape
 import java.awt.Graphics2D
 import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
 
-final case class FillShape(shape:Shape) extends Figure {
+final case class FillShape(shape:Shape, paint:Paint) extends Figure {
 	def pick(at:Point2D):Boolean	=
 			shape contains at
 		
@@ -20,6 +21,9 @@ final case class FillShape(shape:Shape) extends Figure {
 	}
 	
 	def paint(g:Graphics2D) {
-		g	fill	shape
+		val oldPaint	= g.getPaint
+		g	setPaint	paint
+		g	fill		shape
+		g	setPaint	oldPaint
 	}
 }
