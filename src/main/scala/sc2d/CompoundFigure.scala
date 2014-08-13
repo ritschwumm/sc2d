@@ -5,11 +5,13 @@ import java.awt.Graphics2D
 import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
 
+import scala.collection.immutable.{ Seq => ISeq }
+
 object CompoundFigure {
 	val noBounds	= new Rectangle2D.Double()
 }
 
-final case class CompoundFigure(subs:Seq[Figure]) extends Figure {
+final case class CompoundFigure(subs:ISeq[Figure]) extends Figure {
 	def pick(at:Point2D):Boolean	=
 			subs exists { _ pick at }
 			

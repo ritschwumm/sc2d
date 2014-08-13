@@ -6,15 +6,16 @@ import java.awt.geom._
 import javax.swing._
 
 import scala.collection.JavaConverters._
+import scala.collection.immutable.{ Seq => ISeq }
 
 // NOTE if background is None the component is considered non-opaque
 class Canvas(background:Option[Paint], hints:Hints=Hints.empty, immediate:Boolean=false) extends JComponent {
 	setOpaque(background.isDefined)
 	
-	private var figures:Seq[Figure]		= Seq.empty
-	// private var repaints:Seq[Rectangle]	= Seq.empty
+	private var figures:ISeq[Figure]		= ISeq.empty
+	// private var repaints:ISeq[Rectangle]	= ISeq.empty
 		
-	def setFigures(figures:Seq[Figure]) {
+	def setFigures(figures:ISeq[Figure]) {
 		this.figures	= figures
 		/*
 		repaints foreach repaint
