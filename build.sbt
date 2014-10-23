@@ -2,9 +2,9 @@ name			:= "sc2d"
 
 organization	:= "de.djini"
 
-version			:= "0.17.0"
+version			:= "0.18.0"
 
-scalaVersion	:= "2.11.3"
+scalaVersion	:= "2.11.2"
 
 scalacOptions	++= Seq(
 	"-deprecation",
@@ -18,3 +18,5 @@ scalacOptions	++= Seq(
 	// "-language:experimental.macros"
 	"-feature"
 )
+
+conflictManager	:= ConflictManager.strict
