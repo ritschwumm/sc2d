@@ -2,10 +2,8 @@ package sc2d
 
 import java.awt.{ List=>AwtList, Canvas=>AwtCanvas, _ }
 import java.awt.event._
-import java.awt.geom._
 import javax.swing._
 
-import scala.collection.JavaConverters._
 import scala.collection.immutable.{ Seq => ISeq }
 
 // NOTE if background is None the component is considered non-opaque

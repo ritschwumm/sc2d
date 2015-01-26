@@ -1,11 +1,8 @@
 name			:= "sc2d"
-
 organization	:= "de.djini"
+version			:= "0.20.0"
 
-version			:= "0.19.0"
-
-scalaVersion	:= "2.11.4"
-
+scalaVersion	:= "2.11.5"
 scalacOptions	++= Seq(
 	"-deprecation",
 	"-unchecked",
@@ -16,7 +13,9 @@ scalacOptions	++= Seq(
 	// "-language:dynamics",
 	// "-language:postfixOps",
 	// "-language:experimental.macros"
-	"-feature"
+	"-feature",
+	"-Ywarn-unused-import",
+	"-Xfatal-warnings"
 )
 
 conflictManager	:= ConflictManager.strict
