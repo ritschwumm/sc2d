@@ -11,7 +11,7 @@ import java.awt.font.FontRenderContext
 
 object DrawText {
 	private val identityTransform	= new AffineTransform
-	// TODO fake FontRenderContext returns sizes different from what's used in paint 
+	// TODO fake FontRenderContext returns sizes different from what's used in paint
 	private val fontRenderContext	= new FontRenderContext(null, false, false)
 }
 
@@ -21,7 +21,7 @@ final case class DrawText(text:String, paint:Paint, font:Font, x:Float, y:Float,
 	private val textLayout	=
 			new TextLayout(
 				text,
-				font, 
+				font,
 				DrawText.fontRenderContext
 			)
 			

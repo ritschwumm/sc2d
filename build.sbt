@@ -1,8 +1,8 @@
 name			:= "sc2d"
 organization	:= "de.djini"
-version			:= "0.20.0"
+version			:= "0.21.0"
 
-scalaVersion	:= "2.11.5"
+scalaVersion	:= "2.11.6"
 scalacOptions	++= Seq(
 	"-deprecation",
 	"-unchecked",

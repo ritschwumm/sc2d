@@ -13,12 +13,12 @@ object Hints {
 	
 	def desktop:Option[Hints]	=
 			Option(Toolkit.getDefaultToolkit getDesktopProperty "awt.font.desktophints") map { it =>
-				Hints(it.asInstanceOf[JMap[RenderingHints.Key, AnyRef]].asScala.toMap) 
+				Hints(it.asInstanceOf[JMap[RenderingHints.Key, AnyRef]].asScala.toMap)
 			}
 	
 	// KEY_STROKE_CONTROL	-> VALUE_STROKE_DEFAULT, VALUE_STROKE_NORMALIZE, VALUE_STROKE_PURE
 	
-	val highQuality:Hints	= 
+	val highQuality:Hints	=
 			Hints(Map(
 				KEY_ANTIALIASING		-> VALUE_ANTIALIAS_ON,
 				KEY_TEXT_ANTIALIASING	-> VALUE_TEXT_ANTIALIAS_ON,
@@ -27,7 +27,7 @@ object Hints {
 				KEY_ALPHA_INTERPOLATION	-> VALUE_ALPHA_INTERPOLATION_QUALITY
 			))
 			
-	val lowQuality:Hints	= 
+	val lowQuality:Hints	=
 			Hints(Map(
 				KEY_ANTIALIASING		-> VALUE_ANTIALIAS_OFF,
 				KEY_TEXT_ANTIALIASING	-> VALUE_TEXT_ANTIALIAS_OFF,

@@ -7,10 +7,10 @@ import java.awt.geom.Rectangle2D
 
 final case class WithClip(clip:Shape, sub:Figure) extends Figure {
 	def pick(at:Point2D):Boolean	=
-			(clip	contains	at) && 
+			(clip	contains	at) &&
 			(sub	pick		at)
 			
-	val bounds:Rectangle2D	= 
+	val bounds:Rectangle2D	=
 			sub.bounds createIntersection clip.getBounds2D
 	
 	def paint(g:Graphics2D) {

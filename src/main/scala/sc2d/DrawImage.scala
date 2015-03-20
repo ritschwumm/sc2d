@@ -15,7 +15,7 @@ final case class DrawImage(image:BufferedImage, x:Int, y:Int) extends Figure {
 		((image getRGB (atX, atY)) & 0xff000000L) != 0
 	}
 		
-	val bounds:Rectangle2D	= 
+	val bounds:Rectangle2D	=
 			new Rectangle(
 				x,
 				y,

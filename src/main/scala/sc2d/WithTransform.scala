@@ -9,10 +9,10 @@ final case class WithTransform(transform:AffineTransform, sub:Figure) extends Fi
 	def pick(at:Point2D):Boolean	= {
 		val	tmp	= new Point2D.Double
 		transform inverseTransform (at, tmp)
-		sub pick tmp 
+		sub pick tmp
 	}
 	
-	val bounds:Rectangle2D	= 
+	val bounds:Rectangle2D	=
 			(transform createTransformedShape sub.bounds).getBounds2D
 		
 	def paint(g:Graphics2D) {

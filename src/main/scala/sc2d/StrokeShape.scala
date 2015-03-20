@@ -15,7 +15,7 @@ final case class StrokeShape(shape:Shape, paint:Paint, stroke:Stroke) extends Fi
 	def pick(at:Point2D):Boolean	=
 			strokedShape contains at
 		
-	val bounds:Rectangle2D	= 
+	val bounds:Rectangle2D	=
 			stroke match {
 				case bs:BasicStroke	=>
 					val shapeBounds	= shape.getBounds2D
