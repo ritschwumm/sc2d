@@ -1,6 +1,6 @@
 package sc2d
 
-import java.awt.{ List=>AwtList, Canvas=>AwtCanvas, _ }
+import java.awt.{ List=>_, Canvas=>_, _ }
 import java.awt.event._
 import javax.swing._
 
