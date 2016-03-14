@@ -37,7 +37,7 @@ object Hints {
 			))
 }
 
-case class Hints(values:Map[RenderingHints.Key, AnyRef]) {
+final case class Hints(values:Map[RenderingHints.Key, AnyRef]) {
 	val map:JMap[RenderingHints.Key, AnyRef]	= values.asJava
 }
 

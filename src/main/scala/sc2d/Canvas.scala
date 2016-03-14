@@ -34,8 +34,8 @@ class Canvas(background:Option[Paint], hints:Hints=Hints.empty, immediate:Boolea
 			
 			val cb	= g.getClipBounds
 
-			if (background.isDefined) {
-				g setPaint	background.get
+			background foreach { bg =>
+				g setPaint	bg
 				g fill		cb
 			}
 			
