@@ -1,6 +1,6 @@
 name			:= "sc2d"
 organization	:= "de.djini"
-version			:= "0.25.0"
+version			:= "0.26.0"
 
 scalaVersion	:= "2.11.8"
 scalacOptions	++= Seq(
