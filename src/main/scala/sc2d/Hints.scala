@@ -11,6 +11,10 @@ object Hints {
 	
 	val empty:Hints	= Hints(Map.empty)
 	
+	object Var {
+		def apply(values:(RenderingHints.Key, AnyRef)*):Hints	= Hints(values.toMap)
+	}
+	
 	def desktop:Option[Hints]	=
 			Option(Toolkit.getDefaultToolkit getDesktopProperty "awt.font.desktophints") map { it =>
 				Hints(it.asInstanceOf[JMap[RenderingHints.Key, AnyRef]].asScala.toMap)
@@ -39,10 +43,4 @@ object Hints {
 
 final case class Hints(values:Map[RenderingHints.Key, AnyRef]) {
 	val map:JMap[RenderingHints.Key, AnyRef]	= values.asJava
-}
-
-/** creation herlper */
-object VarHints {
-	def apply(values:(RenderingHints.Key, AnyRef)*):Hints	=
-			Hints(values.toMap)
 }
