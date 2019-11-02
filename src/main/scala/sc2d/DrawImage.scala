@@ -14,7 +14,7 @@ final case class DrawImage(image:BufferedImage, x:Int, y:Int) extends Figure {
 		atY >= 0 && atY < image.getHeight	&&
 		((image getRGB (atX, atY)) & 0xff000000L) != 0
 	}
-		
+
 	val bounds:Rectangle2D	=
 			new Rectangle(
 				x,
@@ -22,8 +22,8 @@ final case class DrawImage(image:BufferedImage, x:Int, y:Int) extends Figure {
 				image.getWidth,
 				image.getHeight
 			)
-	
-	def paint(g:Graphics2D) {
+
+	def paint(g:Graphics2D):Unit	= {
 		g	drawImage	(image, x, y, null)
 	}
 }

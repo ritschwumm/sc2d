@@ -13,7 +13,7 @@ object CompoundFigure {
 final case class CompoundFigure(subs:ISeq[Figure]) extends Figure {
 	def pick(at:Point2D):Boolean	=
 			subs exists { _ pick at }
-			
+
 	val bounds:Rectangle2D	=
 			subs.size match {
 				case 0	=> CompoundFigure.noBounds
@@ -32,8 +32,8 @@ final case class CompoundFigure(subs:ISeq[Figure]) extends Figure {
 					}
 					out
 			}
-	
-	def paint(g:Graphics2D) {
+
+	def paint(g:Graphics2D):Unit	= {
 		subs foreach { _ paint g }
 	}
 }

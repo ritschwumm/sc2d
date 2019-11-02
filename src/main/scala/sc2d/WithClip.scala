@@ -9,11 +9,11 @@ final case class WithClip(clip:Shape, sub:Figure) extends Figure {
 	def pick(at:Point2D):Boolean	=
 			(clip	contains	at) &&
 			(sub	pick		at)
-			
+
 	val bounds:Rectangle2D	=
 			sub.bounds createIntersection clip.getBounds2D
-	
-	def paint(g:Graphics2D) {
+
+	def paint(g:Graphics2D):Unit	= {
 		val oldClip	= g.getClip
 		g	clip	clip
 		sub	paint	g

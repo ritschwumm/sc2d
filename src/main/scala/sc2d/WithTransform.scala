@@ -11,11 +11,11 @@ final case class WithTransform(transform:AffineTransform, sub:Figure) extends Fi
 		transform inverseTransform (at, tmp)
 		sub pick tmp
 	}
-	
+
 	val bounds:Rectangle2D	=
 			(transform createTransformedShape sub.bounds).getBounds2D
-		
-	def paint(g:Graphics2D) {
+
+	def paint(g:Graphics2D):Unit	= {
 		val oldTransform	= g.getTransform
 		g	transform		transform
 		sub	paint			g

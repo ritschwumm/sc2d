@@ -12,6 +12,7 @@ import java.awt.font.FontRenderContext
 object DrawText {
 	private val identityTransform	= new AffineTransform
 	// TODO fake FontRenderContext returns sizes different from what's used in paint
+	// @see BasicGraphicsUtils in java 9, maybe this can help
 	private val fontRenderContext	= new FontRenderContext(null, false, false)
 }
 
@@ -24,13 +25,13 @@ final case class DrawText(text:String, paint:Paint, font:Font, x:Float, y:Float,
 				font,
 				DrawText.fontRenderContext
 			)
-			
+
 	private val offsetX		=
 			x - textLayout.getAdvance * xAlign
-			
+
 	private val offsetY	=
 			y - textLayout.getBaseline
-	
+
 	// NOTE slow
 	def pick(at:Point2D):Boolean	= {
 		val shape	= textLayout getOutline DrawText.identityTransform
@@ -41,7 +42,7 @@ final case class DrawText(text:String, paint:Paint, font:Font, x:Float, y:Float,
 				)
 		shape contains tmp
 	}
-	
+
 	val bounds:Rectangle2D	= {
 		// BETTER use getPixelBounds => that would need a FontRenderContext
 		val textBounds	= textLayout.getBounds
@@ -52,8 +53,8 @@ final case class DrawText(text:String, paint:Paint, font:Font, x:Float, y:Float,
 			textBounds.getHeight
 		)
 	}
-	
-	def paint(g:Graphics2D) {
+
+	def paint(g:Graphics2D):Unit	= {
 		val oldPaint	= g.getPaint
 		val oldFont		= g.getFont
 		g	setPaint	paint

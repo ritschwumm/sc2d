@@ -11,10 +11,10 @@ import java.awt.geom.Rectangle2D
 final case class StrokeShape(shape:Shape, paint:Paint, stroke:Stroke) extends Figure {
 	private lazy val strokedShape	=
 			stroke createStrokedShape shape
-	
+
 	def pick(at:Point2D):Boolean	=
 			strokedShape contains at
-		
+
 	val bounds:Rectangle2D	=
 			stroke match {
 				case bs:BasicStroke	=>
@@ -35,8 +35,8 @@ final case class StrokeShape(shape:Shape, paint:Paint, stroke:Stroke) extends Fi
 						shapeBounds.getHeight	+ 2
 					)
 			}
-	
-	def paint(g:Graphics2D) {
+
+	def paint(g:Graphics2D):Unit	= {
 		val oldPaint	= g.getPaint
 		val oldStroke	= g.getStroke
 		g	setPaint	paint

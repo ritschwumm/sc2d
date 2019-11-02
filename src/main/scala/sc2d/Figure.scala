@@ -12,9 +12,9 @@ trait Figure {
 	// def intersects(that:Figure):Boolean
 	def bounds:Rectangle2D
 	def paint(g:Graphics2D):Unit
-	
+
 	final def pickOnly:Figure	= PickOnly(this)
-	
+
 	final def withClip(clip:Shape):Figure						= WithClip		(clip,		this)
 	final def withComposite(composite:Composite):Figure			= WithComposite	(composite,	this)
 	final def withTransform(transform:AffineTransform):Figure	= WithTransform	(transform,	this)

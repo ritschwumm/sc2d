@@ -4,24 +4,24 @@ import java.util.{ Map => JMap }
 import java.awt.Toolkit
 import java.awt.RenderingHints
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 object Hints {
 	import RenderingHints._
-	
+
 	val empty:Hints	= Hints(Map.empty)
-	
+
 	object Var {
 		def apply(values:(RenderingHints.Key, AnyRef)*):Hints	= Hints(values.toMap)
 	}
-	
+
 	def desktop:Option[Hints]	=
 			Option(Toolkit.getDefaultToolkit getDesktopProperty "awt.font.desktophints") map { it =>
 				Hints(it.asInstanceOf[JMap[RenderingHints.Key, AnyRef]].asScala.toMap)
 			}
-	
+
 	// KEY_STROKE_CONTROL	-> VALUE_STROKE_DEFAULT, VALUE_STROKE_NORMALIZE, VALUE_STROKE_PURE
-	
+
 	val highQuality:Hints	=
 			Hints(Map(
 				KEY_ANTIALIASING		-> VALUE_ANTIALIAS_ON,
@@ -30,7 +30,7 @@ object Hints {
 				KEY_COLOR_RENDERING		-> VALUE_COLOR_RENDER_QUALITY,
 				KEY_ALPHA_INTERPOLATION	-> VALUE_ALPHA_INTERPOLATION_QUALITY
 			))
-			
+
 	val lowQuality:Hints	=
 			Hints(Map(
 				KEY_ANTIALIASING		-> VALUE_ANTIALIAS_OFF,
