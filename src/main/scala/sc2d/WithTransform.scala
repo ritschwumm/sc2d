@@ -8,7 +8,7 @@ import java.awt.geom.AffineTransform
 final case class WithTransform(transform:AffineTransform, sub:Figure) extends Figure {
 	def pick(at:Point2D):Boolean	= {
 		val	tmp	= new Point2D.Double
-		transform inverseTransform (at, tmp)
+		transform.inverseTransform(at, tmp)
 		sub pick tmp
 	}
 

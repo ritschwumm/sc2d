@@ -41,7 +41,7 @@ class Canvas(background:Option[Paint], hints:Hints=Hints.empty, immediate:Boolea
 
 			val iter	= figures.iterator
 			while (iter.hasNext) {
-				val figure	= iter.next
+				val figure	= iter.next()
 				if (figure.bounds intersects cb) {
 					figure paint g
 				}

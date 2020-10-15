@@ -28,7 +28,7 @@ final case class CompoundFigure(subs:ISeq[Figure]) extends Figure {
 								head.getHeight
 							)
 					subs.tail.foreach { it =>
-						Rectangle2D union (it.bounds, out, out)
+						Rectangle2D.union(it.bounds, out, out)
 					}
 					out
 			}

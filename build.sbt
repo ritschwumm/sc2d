@@ -1,20 +1,14 @@
 name			:= "sc2d"
 organization	:= "de.djini"
-version			:= "0.33.0"
+version			:= "0.34.0"
 
-scalaVersion	:= "2.13.1"
+scalaVersion	:= "2.13.3"
 scalacOptions	++= Seq(
+	"-feature",
 	"-deprecation",
 	"-unchecked",
-	// "-language:implicitConversions",
-	// "-language:existentials",
-	// "-language:higherKinds",
-	// "-language:reflectiveCalls",
-	// "-language:dynamics",
-	// "-language:experimental.macros"
-	"-feature",
-	"-Xfatal-warnings",
-	"-Xlint"
+	"-Werror",
+	"-Xlint",
 )
 
 conflictManager	:= ConflictManager.strict withOrganization "^(?!(org\\.scala-lang|org\\.scala-js)(\\..*)?)$"

@@ -59,7 +59,7 @@ final case class DrawText(text:String, paint:Paint, font:Font, x:Float, y:Float,
 		val oldFont		= g.getFont
 		g	setPaint	paint
 		g	setFont		font
-		g	drawString	(text, offsetX, offsetY)
+		g	.drawString	(text, offsetX, offsetY)
 		g	setPaint	oldPaint
 		g	setFont		oldFont
 	}
