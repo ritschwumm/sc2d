@@ -16,14 +16,13 @@ final case class DrawImage(image:BufferedImage, x:Int, y:Int) extends Figure {
 	}
 
 	val bounds:Rectangle2D	=
-			new Rectangle(
-				x,
-				y,
-				image.getWidth,
-				image.getHeight
-			)
+		new Rectangle(
+			x,
+			y,
+			image.getWidth,
+			image.getHeight
+		)
 
-	def paint(g:Graphics2D):Unit	= {
+	def paint(g:Graphics2D):Unit	=
 		g.drawImage(image, x, y, null)
-	}
 }

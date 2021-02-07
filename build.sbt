@@ -2,7 +2,7 @@ Global / onChangedBuildSource := ReloadOnSourceChanges
 
 name			:= "sc2d"
 organization	:= "de.djini"
-version			:= "0.36.0"
+version			:= "0.37.0"
 
 scalaVersion	:= "2.13.4"
 scalacOptions	++= Seq(

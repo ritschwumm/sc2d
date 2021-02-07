@@ -10,28 +10,27 @@ object CompoundFigure {
 
 final case class CompoundFigure(subs:Seq[Figure]) extends Figure {
 	def pick(at:Point2D):Boolean	=
-			subs exists { _ pick at }
+		subs exists (_ pick at)
 
 	val bounds:Rectangle2D	=
-			subs.size match {
-				case 0	=> CompoundFigure.noBounds
-				case 1	=> subs.head.bounds
-				case _	=>
-					val head	= subs.head.bounds
-					val out		=
-							new Rectangle2D.Double(
-								head.getX,
-								head.getY,
-								head.getWidth,
-								head.getHeight
-							)
-					subs.tail.foreach { it =>
-						Rectangle2D.union(it.bounds, out, out)
-					}
-					out
-			}
+		subs.size match {
+			case 0	=> CompoundFigure.noBounds
+			case 1	=> subs.head.bounds
+			case _	=>
+				val head	= subs.head.bounds
+				val out		=
+					new Rectangle2D.Double(
+						head.getX,
+						head.getY,
+						head.getWidth,
+						head.getHeight
+					)
+				subs.tail.foreach { it =>
+					Rectangle2D.union(it.bounds, out, out)
+				}
+				out
+		}
 
-	def paint(g:Graphics2D):Unit	= {
+	def paint(g:Graphics2D):Unit	=
 		subs foreach { _ paint g }
-	}
 }

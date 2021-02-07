@@ -6,14 +6,14 @@ import java.awt.geom.Rectangle2D
 
 final case class WithHints(hints:Hints, sub:Figure) extends Figure {
 	def pick(at:Point2D):Boolean	=
-			sub	pick at
+		sub	pick at
 
 	val bounds:Rectangle2D	=
-			sub.bounds
+		sub.bounds
 
 	def paint(g:Graphics2D):Unit	= {
 		val oldHints	= g.getRenderingHints
-		g	addRenderingHints	hints.map
+		g	addRenderingHints	hints.asJava
 		sub	paint				g
 		g	setRenderingHints	oldHints
 	}

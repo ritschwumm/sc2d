@@ -1,6 +1,8 @@
 package sc2d
 
-import java.awt.{ List=>_, Canvas=>_, _ }
+import java.awt.Graphics
+import java.awt.Graphics2D
+import java.awt.Paint
 import java.awt.event._
 import javax.swing._
 
@@ -28,7 +30,7 @@ class Canvas(background:Option[Paint], hints:Hints=Hints.empty, immediate:Boolea
 		val	g1	= graphics.create()
 		try {
 			val	g	= g1.asInstanceOf[Graphics2D]
-			g addRenderingHints hints.map
+			g addRenderingHints hints.asJava
 
 			val cb	= g.getClipBounds
 

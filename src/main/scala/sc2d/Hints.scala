@@ -11,36 +11,34 @@ object Hints {
 
 	val empty:Hints	= Hints(Map.empty)
 
-	object Var {
-		def apply(values:(RenderingHints.Key, AnyRef)*):Hints	= Hints(values.toMap)
-	}
+	def of(values:(RenderingHints.Key, AnyRef)*):Hints	= Hints(values.toMap)
 
 	def desktop:Option[Hints]	=
-			Option(Toolkit.getDefaultToolkit getDesktopProperty "awt.font.desktophints") map { it =>
-				Hints(it.asInstanceOf[JMap[RenderingHints.Key, AnyRef]].asScala.toMap)
-			}
+		Option(Toolkit.getDefaultToolkit getDesktopProperty "awt.font.desktophints") map { it =>
+			Hints(it.asInstanceOf[JMap[RenderingHints.Key, AnyRef]].asScala.toMap)
+		}
 
 	// KEY_STROKE_CONTROL	-> VALUE_STROKE_DEFAULT, VALUE_STROKE_NORMALIZE, VALUE_STROKE_PURE
 
 	val highQuality:Hints	=
-			Hints(Map(
-				KEY_ANTIALIASING		-> VALUE_ANTIALIAS_ON,
-				KEY_TEXT_ANTIALIASING	-> VALUE_TEXT_ANTIALIAS_ON,
-				KEY_INTERPOLATION		-> VALUE_INTERPOLATION_BICUBIC,
-				KEY_COLOR_RENDERING		-> VALUE_COLOR_RENDER_QUALITY,
-				KEY_ALPHA_INTERPOLATION	-> VALUE_ALPHA_INTERPOLATION_QUALITY
-			))
+		of(
+			KEY_ANTIALIASING		-> VALUE_ANTIALIAS_ON,
+			KEY_TEXT_ANTIALIASING	-> VALUE_TEXT_ANTIALIAS_ON,
+			KEY_INTERPOLATION		-> VALUE_INTERPOLATION_BICUBIC,
+			KEY_COLOR_RENDERING		-> VALUE_COLOR_RENDER_QUALITY,
+			KEY_ALPHA_INTERPOLATION	-> VALUE_ALPHA_INTERPOLATION_QUALITY
+		)
 
 	val lowQuality:Hints	=
-			Hints(Map(
-				KEY_ANTIALIASING		-> VALUE_ANTIALIAS_OFF,
-				KEY_TEXT_ANTIALIASING	-> VALUE_TEXT_ANTIALIAS_OFF,
-				KEY_INTERPOLATION		-> VALUE_INTERPOLATION_NEAREST_NEIGHBOR,
-				KEY_COLOR_RENDERING		-> VALUE_COLOR_RENDER_SPEED,
-				KEY_ALPHA_INTERPOLATION	-> VALUE_ALPHA_INTERPOLATION_SPEED
-			))
+		of(
+			KEY_ANTIALIASING		-> VALUE_ANTIALIAS_OFF,
+			KEY_TEXT_ANTIALIASING	-> VALUE_TEXT_ANTIALIAS_OFF,
+			KEY_INTERPOLATION		-> VALUE_INTERPOLATION_NEAREST_NEIGHBOR,
+			KEY_COLOR_RENDERING		-> VALUE_COLOR_RENDER_SPEED,
+			KEY_ALPHA_INTERPOLATION	-> VALUE_ALPHA_INTERPOLATION_SPEED
+		)
 }
 
 final case class Hints(values:Map[RenderingHints.Key, AnyRef]) {
-	val map:JMap[RenderingHints.Key, AnyRef]	= values.asJava
+	val asJava:JMap[RenderingHints.Key, AnyRef]	= values.asJava
 }

@@ -20,26 +20,26 @@ object DrawText {
 /** xAlign 0 is left, 0.5 is center, 1 is right */
 final case class DrawText(text:String, paint:Paint, font:Font, x:Float, y:Float, xAlign:Float) extends Figure {
 	private val textLayout	=
-			new TextLayout(
-				text,
-				font,
-				DrawText.fontRenderContext
-			)
+		new TextLayout(
+			text,
+			font,
+			DrawText.fontRenderContext
+		)
 
 	private val offsetX		=
-			x - textLayout.getAdvance * xAlign
+		x - textLayout.getAdvance * xAlign
 
 	private val offsetY	=
-			y - textLayout.getBaseline
+		y - textLayout.getBaseline
 
 	// NOTE slow
 	def pick(at:Point2D):Boolean	= {
 		val shape	= textLayout getOutline DrawText.identityTransform
 		val	tmp		=
-				new Point2D.Double(
-					at.getX - offsetX,
-					at.getY - offsetY
-				)
+			new Point2D.Double(
+				at.getX - offsetX,
+				at.getY - offsetY
+			)
 		shape contains tmp
 	}
 

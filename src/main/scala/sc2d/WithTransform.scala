@@ -13,7 +13,7 @@ final case class WithTransform(transform:AffineTransform, sub:Figure) extends Fi
 	}
 
 	val bounds:Rectangle2D	=
-			(transform createTransformedShape sub.bounds).getBounds2D
+		transform.createTransformedShape(sub.bounds).getBounds2D
 
 	def paint(g:Graphics2D):Unit	= {
 		val oldTransform	= g.getTransform

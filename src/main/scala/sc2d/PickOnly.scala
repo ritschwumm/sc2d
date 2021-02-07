@@ -6,10 +6,10 @@ import java.awt.geom.Rectangle2D
 
 final case class PickOnly(sub:Figure) extends Figure {
 	def pick(at:Point2D):Boolean	=
-			sub	pick at
+		sub	pick at
 
 	val bounds:Rectangle2D	=
-			sub.bounds
+		sub.bounds
 
 	def paint(g:Graphics2D):Unit	= {}
 }

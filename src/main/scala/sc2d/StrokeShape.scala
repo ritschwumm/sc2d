@@ -10,31 +10,31 @@ import java.awt.geom.Rectangle2D
 
 final case class StrokeShape(shape:Shape, paint:Paint, stroke:Stroke) extends Figure {
 	private lazy val strokedShape	=
-			stroke createStrokedShape shape
+		stroke createStrokedShape shape
 
 	def pick(at:Point2D):Boolean	=
-			strokedShape contains at
+		strokedShape contains at
 
 	val bounds:Rectangle2D	=
-			stroke match {
-				case bs:BasicStroke	=>
-					val shapeBounds	= shape.getBounds2D
-					val strokeSize	= bs.getLineWidth + 2
-					new Rectangle2D.Double(
-						shapeBounds.getX		- strokeSize,
-						shapeBounds.getY		- strokeSize,
-						shapeBounds.getWidth	+ 2*strokeSize,
-						shapeBounds.getHeight	+ 2*strokeSize
-					)
-				case os:Stroke		=>
-					val shapeBounds	= strokedShape.getBounds2D
-					new Rectangle2D.Double(
-						shapeBounds.getX		- 1,
-						shapeBounds.getY		- 1,
-						shapeBounds.getWidth	+ 2,
-						shapeBounds.getHeight	+ 2
-					)
-			}
+		stroke match {
+			case bs:BasicStroke	=>
+				val shapeBounds	= shape.getBounds2D
+				val strokeSize	= bs.getLineWidth + 2
+				new Rectangle2D.Double(
+					shapeBounds.getX		- strokeSize,
+					shapeBounds.getY		- strokeSize,
+					shapeBounds.getWidth	+ 2*strokeSize,
+					shapeBounds.getHeight	+ 2*strokeSize
+				)
+			case os:Stroke		=>
+				val shapeBounds	= strokedShape.getBounds2D
+				new Rectangle2D.Double(
+					shapeBounds.getX		- 1,
+					shapeBounds.getY		- 1,
+					shapeBounds.getWidth	+ 2,
+					shapeBounds.getHeight	+ 2
+				)
+		}
 
 	def paint(g:Graphics2D):Unit	= {
 		val oldPaint	= g.getPaint
