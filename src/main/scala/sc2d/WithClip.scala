@@ -23,7 +23,7 @@ final case class WithClip(clip:Shape, sub:Figure) extends Figure {
 		(clip	contains	at) &&
 		(sub	pick		at)
 
-	val bounds:Rectangle2D	=
+	lazy val bounds:Rectangle2D	=
 		sub.bounds createIntersection clip.getBounds2D
 
 	def paint(g:Graphics2D):Unit	= {

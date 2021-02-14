@@ -33,14 +33,16 @@ final case class DrawText(text:String, paint:Paint, font:Font, x:Float, y:Float,
 		y - textLayout.getBaseline
 
 	// NOTE slow
+	private lazy val outline	=
+		textLayout getOutline DrawText.identityTransform
+
 	def pick(at:Point2D):Boolean	= {
-		val shape	= textLayout getOutline DrawText.identityTransform
 		val	tmp		=
 			new Point2D.Double(
 				at.getX - offsetX,
 				at.getY - offsetY
 			)
-		shape contains tmp
+		outline contains tmp
 	}
 
 	val bounds:Rectangle2D	= {

@@ -6,13 +6,23 @@ import java.awt.geom.Rectangle2D
 
 object CompoundFigure {
 	val noBounds	= new Rectangle2D.Double()
+
+	def of(subs:Figure*):Figure	= CompoundFigure(subs)
+
+	def apply(subs:Seq[Figure]):Figure	=
+		new CompoundFigure(
+			subs flatMap {
+				case CompoundFigure(subs)	=> subs
+				case x						=> Vector(x)
+			}
+		)
 }
 
 final case class CompoundFigure(subs:Seq[Figure]) extends Figure {
 	def pick(at:Point2D):Boolean	=
 		subs exists (_ pick at)
 
-	val bounds:Rectangle2D	=
+	lazy val bounds:Rectangle2D	=
 		subs.size match {
 			case 0	=> CompoundFigure.noBounds
 			case 1	=> subs.head.bounds
