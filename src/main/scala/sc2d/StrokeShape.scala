@@ -18,6 +18,7 @@ final case class StrokeShape(shape:Shape, paint:Paint, stroke:Stroke) extends Fi
 	val bounds:Rectangle2D	=
 		stroke match {
 			case bs:BasicStroke	=>
+				// TODO this is not worth much - oicking later will calculate the stroked shape anyway
 				val shapeBounds	= shape.getBounds2D
 				val strokeSize	= bs.getLineWidth + 2
 				new Rectangle2D.Double(

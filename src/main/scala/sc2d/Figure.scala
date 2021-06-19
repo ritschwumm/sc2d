@@ -9,10 +9,13 @@ import java.awt.geom.AffineTransform
 
 trait Figure {
 	def pick(point:Point2D):Boolean
+
 	// def intersects(that:Figure):Boolean
 	def bounds:Rectangle2D
+
 	def paint(g:Graphics2D):Unit
 
+	// TODO do we want  separation of Paintable and Pickable?
 	final def pickOnly:Figure	= PickOnly(this)
 
 	final def withClip(clip:Shape):Figure						= WithClip		(clip,		this)

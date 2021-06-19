@@ -19,11 +19,9 @@ object WithTransform {
 }
 
 final case class WithTransform(transform:AffineTransform, sub:Figure) extends Figure {
-	def pick(at:Point2D):Boolean	= {
-		val	tmp	= new Point2D.Double
-		transform.inverseTransform(at, tmp)
-		sub pick tmp
-	}
+	// TODO deal with non invertible exceptions - can we ensure the transform _is_ invertible?
+	def pick(at:Point2D):Boolean	=
+		sub pick transform.inverseTransform(at, null)
 
 	lazy val bounds:Rectangle2D	=
 		transform.createTransformedShape(sub.bounds).getBounds2D

@@ -23,6 +23,9 @@ class Canvas(background:Option[Paint], hints:Hints=Hints.empty, immediate:Boolea
 		// TODO better repainting mechanism
 		if (immediate)	paintImmediately(0, 0, getWidth, getHeight)
 		else			repaint()
+		// TODO do we have to do this after paintImmediately?
+		// ensure the gfx pipeline is really painted now
+		//Toolkit.getDefaultToolkit().sync()
 	}
 
 	/** paint this component */
