@@ -4,21 +4,22 @@ ThisBuild / versionScheme := Some("early-semver")
 
 name			:= "sc2d"
 organization	:= "de.djini"
-version			:= "0.40.0"
+version			:= "0.41.0"
 
-scalaVersion	:= "2.13.5"
+scalaVersion	:= "2.13.6"
 scalacOptions	++= Seq(
 	"-feature",
 	"-deprecation",
 	"-unchecked",
 	"-Werror",
 	"-Xlint",
+	"-Xsource:3",
 )
 
 conflictManager	:= ConflictManager.strict withOrganization "^(?!(org\\.scala-lang|org\\.scala-js)(\\..*)?)$"
 
 libraryDependencies	++= Seq(
-	"io.monix"	%%	"minitest"	%	"2.9.3"	%	"test"
+	"io.monix"	%%	"minitest"	%	"2.9.6"	%	"test"
 )
 
 testFrameworks	+= new TestFramework("minitest.runner.Framework")
