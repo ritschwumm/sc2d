@@ -29,10 +29,10 @@ class Canvas(background:Option[Paint], hints:Hints=Hints.empty, immediate:Boolea
 	}
 
 	/** paint this component */
-	override def paintComponent(graphics:Graphics):Unit	= {
-		val	g1	= graphics.create()
+	override def paintComponent(graphics:Graphics):Unit = {
+		val g1	= graphics.create()
 		try {
-			val	g	= g1.asInstanceOf[Graphics2D]
+			val g	= g1.asInstanceOf[Graphics2D]
 			g addRenderingHints hints.asJava
 
 			val cb	= g.getClipBounds
@@ -61,5 +61,5 @@ class Canvas(background:Option[Paint], hints:Hints=Hints.empty, immediate:Boolea
 		def componentMoved(ev:ComponentEvent):Unit		= {}
 		def componentResized(ev:ComponentEvent):Unit	= { repaint() }
 		def componentShown(ev:ComponentEvent):Unit		= {}
-    }
+	}
 }
