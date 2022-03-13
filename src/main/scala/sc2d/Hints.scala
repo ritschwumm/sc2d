@@ -1,13 +1,13 @@
 package sc2d
 
-import java.util.{ Map => JMap }
+import java.util.{ Map as JMap }
 import java.awt.Toolkit
 import java.awt.RenderingHints
 
-import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters.*
 
 object Hints {
-	import RenderingHints._
+	import RenderingHints.*
 
 	val empty:Hints	= Hints(Map.empty)
 

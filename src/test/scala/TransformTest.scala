@@ -1,6 +1,6 @@
 package sc2d
 
-import minitest._
+import minitest.*
 
 import java.awt.Color
 import java.awt.Rectangle

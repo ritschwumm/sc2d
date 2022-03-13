@@ -3,8 +3,8 @@ package sc2d
 import java.awt.Graphics
 import java.awt.Graphics2D
 import java.awt.Paint
-import java.awt.event._
-import javax.swing._
+import java.awt.event.*
+import javax.swing.*
 
 // NOTE if background is None the component is considered non-opaque
 class Canvas(background:Option[Paint], hints:Hints=Hints.empty, immediate:Boolean=false) extends JComponent {
