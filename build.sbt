@@ -4,9 +4,9 @@ ThisBuild / versionScheme := Some("early-semver")
 
 name			:= "sc2d"
 organization	:= "de.djini"
-version			:= "0.44.0"
+version			:= "0.45.0"
 
-scalaVersion	:= "3.1.1"
+scalaVersion	:= "3.1.2"
 scalacOptions	++= Seq(
 	"-feature",
 	"-deprecation",
